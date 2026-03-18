@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wild Washington 2026 · The Dreams</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --obsidian:   #0E0F0C;
+    --deep:       #1A1C18;
+    --forest:     #1E2A1A;
+    --moss:       #2C3E28;
+    --fern:       #4A6B3C;
+    --sage:       #7A9E6A;
+    --mist:       #B4C8A8;
+    --fog:        #E0E8D8;
+    --parchment:  #F2EDE0;
+    --cream:      #FAF7F0;
+    --stone:      #7A7568;
+    --ink:        #1C1A14;
+    --gold:       #C4882A;
+    --ember:      #8B3A2A;
+    --lantern:    #E8A030;
+    --moonsilver: #B8C8D8;
+    --white:      #FAFAF5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Crimson Pro', serif;
+    background: var(--parchment);
+    color: var(--ink);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: var(--obsidian);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 80px 24px;
+  }
+
+  /* Layered atmospheric gradients */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 15% 85%, rgba(74,107,60,0.30) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 35% at 85% 15%, rgba(196,136,42,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 90% 60% at 50% 110%, rgba(184,200,216,0.08) 0%, transparent 45%);
+  }
+
+  /* Grain texture overlay */
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  /* Twelve moons decoration */
+  .hero-moons {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+
+  /* Mountain silhouette */
+  .hero-mountains {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    opacity: 0.07;
+  }
+
+  /* Runic border at bottom of hero */
+  .hero-rune-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--fern), var(--gold), var(--fern), transparent);
+    opacity: 0.5;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 860px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.3s;
+  }
+
+  /* Decorative rule with compass rose motif */
+  .hero-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.3s;
+  }
+
+  .hero-rule-line {
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(122,158,106,0.5));
+  }
+
+  .hero-rule-line.right {
+    background: linear-gradient(to left, transparent, rgba(122,158,106,0.5));
+  }
+
+  .hero-rule-diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--sage);
+    transform: rotate(45deg);
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 0.95;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.5s;
+    text-shadow: 0 0 80px rgba(74,107,60,0.4);
+  }
+
+  .hero-title .state {
+    display: block;
+    color: var(--sage);
+    font-size: 0.55em;
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+  }
+
+  .hero-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--mist);
+    margin: 24px 0 48px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.7s;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-party {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.9s;
+    margin-bottom: 48px;
+  }
+
+  .party-member {
+    text-align: center;
+    position: relative;
+  }
+
+  .party-member .name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .party-member .class {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--sage);
+    margin-top: 2px;
+  }
+
+  .party-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(122,158,106,0.25);
+    margin: auto;
+    align-self: center;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.0s;
+  }
+
+  .hero-meta-item { text-align: center; }
+
+  .hero-meta-item .num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--lantern);
+    line-height: 1;
+  }
+
+  .hero-meta-item .label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-top: 4px;
+  }
+
+  .hero-meta-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(122,158,106,0.2);
+    align-self: center;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.4s;
+  }
+
+  .scroll-hint span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+
+  .scroll-arrow {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--sage), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ─── QUEST BOARD (Parks Overview) ─── */
+  .quest-section {
+    background: var(--deep);
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quest-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--fern), transparent);
+  }
+
+  .quest-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 56px;
+  }
+
+  .quest-header .overline {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .quest-header h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+  }
+
+  .quest-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .quest-card {
+    padding: 44px 32px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(74,107,60,0.18);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .quest-card:hover { background: rgba(74,107,60,0.07); }
+
+  .quest-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--fern), var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .quest-card:hover::after { transform: scaleX(1); }
+
+  .quest-number {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: rgba(74,107,60,0.18);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .quest-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .quest-region {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+
+  .quest-desc {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.85;
+    font-style: italic;
+  }
+
+  /* ─── CAMPAIGN LOG (Itinerary) ─── */
+  .log-section {
+    background: var(--cream);
+  }
+
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.60rem;
+    font-weight: 600;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--fern);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  .days-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .day-block {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    border-bottom: 1px solid rgba(30,42,26,0.08);
+  }
+
+  .day-block:last-child { border-bottom: none; }
+
+  .day-date {
+    padding: 26px 20px 26px 0;
+    border-right: 2px solid var(--fog);
+    position: relative;
+  }
+
+  .day-date::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 34px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--fern);
+    border: 1px solid var(--cream);
+  }
+
+  .day-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 4px;
+  }
+
+  .day-date-text {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.2;
+  }
+
+  .day-content {
+    padding: 26px 0 26px 28px;
+  }
+
+  .day-location {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fern);
+    margin-bottom: 4px;
+  }
+
+  .day-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 6px;
+  }
+
+  .day-desc {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--stone);
+    line-height: 1.85;
+  }
+
+  .day-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+    border-radius: 1px;
+  }
+
+  .badge-camp    { background: var(--forest); color: var(--sage); }
+  .badge-hotel   { background: var(--moonsilver); color: var(--deep); }
+  .badge-drive   { background: var(--ember); color: var(--cream); }
+  .badge-special { background: var(--gold); color: var(--obsidian); }
+  .badge-fly     { background: var(--obsidian); color: var(--mist); border: 1px solid rgba(122,158,106,0.3); }
+  .badge-party   { background: var(--fern); color: var(--cream); }
+
+  /* ─── LEGENDARY ENCOUNTERS (Highlights) ─── */
+  .encounters-section {
+    background: var(--deep);
+    padding: 80px 24px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .encounters-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .encounters-inner { max-width: 1000px; margin: 0 auto; }
+
+  .encounters-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+
+  .encounter-item {
+    padding: 28px 30px;
+    border: 1px solid rgba(74,107,60,0.22);
+    position: relative;
+    transition: border-color 0.3s ease;
+  }
+
+  .encounter-item:hover { border-color: rgba(196,136,42,0.4); }
+
+  .encounter-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px;
+    height: 0;
+    background: linear-gradient(to bottom, var(--gold), var(--fern));
+    transition: height 0.4s ease;
+  }
+
+  .encounter-item:hover::before { height: 100%; }
+
+  .encounter-icon {
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .encounter-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .encounter-desc {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--mist);
+    line-height: 1.85;
+    font-style: italic;
+  }
+
+  /* ─── COMPENDIUM (Need to Know) ─── */
+  .compendium-section { background: var(--parchment); }
+
+  .compendium-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: rgba(26,42,26,0.08);
+    border: 1px solid rgba(26,42,26,0.08);
+  }
+
+  .compendium-item {
+    background: var(--cream);
+    padding: 26px 30px;
+  }
+
+  .compendium-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.60rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--fern);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .compendium-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(74,107,60,0.2);
+  }
+
+  .compendium-text {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.75;
+  }
+
+  .compendium-text strong { color: var(--forest); font-weight: 600; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--obsidian);
+    padding: 72px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--fern), var(--gold), var(--fern), transparent);
+    opacity: 0.5;
+  }
+
+  .footer-rune {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 20px;
+    opacity: 0.6;
+  }
+
+  .footer-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 16px;
+    text-shadow: 0 0 60px rgba(196,136,42,0.25);
+  }
+
+  .footer-sub {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--sage);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-party {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .footer-party-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .footer-party-sep {
+    color: var(--fern);
+    font-size: 0.6rem;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.35; }
+    50%       { opacity: 1; }
+  }
+
+  @keyframes moonFloat {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-6px); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    .quest-grid         { grid-template-columns: 1fr; }
+    .encounters-grid    { grid-template-columns: 1fr; }
+    .compendium-grid    { grid-template-columns: 1fr; }
+    .day-block          { grid-template-columns: 82px 1fr; }
+    .hero-party         { gap: 16px; }
+    .party-divider      { display: none; }
+    .hero-meta          { gap: 20px; }
+    .hero-meta-divider  { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+
+  <!-- Twelve moons — subtle scattered circles -->
+  <svg class="hero-moons" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="80"  cy="80"  r="6"  fill="rgba(184,200,216,0.12)"/>
+    <circle cx="200" cy="140" r="4"  fill="rgba(184,200,216,0.08)"/>
+    <circle cx="340" cy="60"  r="8"  fill="rgba(184,200,216,0.10)"/>
+    <circle cx="480" cy="110" r="5"  fill="rgba(184,200,216,0.09)"/>
+    <circle cx="600" cy="50"  r="7"  fill="rgba(184,200,216,0.13)"/>
+    <circle cx="720" cy="120" r="4"  fill="rgba(184,200,216,0.08)"/>
+    <circle cx="860" cy="70"  r="9"  fill="rgba(184,200,216,0.11)"/>
+    <circle cx="960" cy="140" r="5"  fill="rgba(184,200,216,0.09)"/>
+    <circle cx="1060" cy="55" r="6"  fill="rgba(184,200,216,0.10)"/>
+    <circle cx="1140" cy="110" r="4" fill="rgba(184,200,216,0.08)"/>
+    <circle cx="150" cy="600" r="5"  fill="rgba(122,158,106,0.08)"/>
+    <circle cx="1050" cy="580" r="6" fill="rgba(122,158,106,0.07)"/>
+  </svg>
+
+  <!-- Mountain silhouette -->
+  <svg class="hero-mountains" viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,400 L0,280 L100,190 L180,250 L300,110 L400,210 L510,145 L600,225 L710,65 L820,185 L910,125 L1010,205 L1110,85 L1210,165 L1320,105 L1440,195 L1440,400 Z" fill="white"/>
+    <path d="M0,400 L0,330 L70,270 L150,310 L260,235 L360,290 L460,250 L550,295 L650,210 L750,278 L850,240 L950,285 L1050,218 L1150,268 L1270,242 L1380,272 L1440,255 L1440,400 Z" fill="white" opacity="0.45"/>
+  </svg>
+
+  <div class="hero-rune-line"></div>
+
+  <div class="hero-content">
+    <div class="hero-rule">
+      <div class="hero-rule-line"></div>
+      <div class="hero-rule-diamond"></div>
+      <div class="hero-rule-line right"></div>
+    </div>
+
+    <p class="hero-eyebrow">September 8 – 24, 2026  ·  The Pacific Northwest  ·  A Party of Four</p>
+
+    <h1 class="hero-title">
+      Wild
+      <span class="state">Washington</span>
+    </h1>
+
+    <p class="hero-subtitle">Three national parks. One Canadian island. Seventeen days. No Dreams to guide us.</p>
+
+    <div class="hero-party">
+      <div class="party-member">
+        <div class="name">THE DM</div>
+        <div class="class">Trip Planner Extraordinaire · Full Party</div>
+      </div>
+      <div class="party-divider"></div>
+      <div class="party-member">
+        <div class="name">Elowen</div>
+        <div class="class">Elf Wizard · Full Party</div>
+      </div>
+      <div class="party-divider"></div>
+      <div class="party-member">
+        <div class="name">Enacra</div>
+        <div class="class">Kalashtar Rogue · Joins Day 5</div>
+      </div>
+      <div class="party-divider"></div>
+      <div class="party-member">
+        <div class="name">Tolwyn</div>
+        <div class="class">Dwarf Paladin · Joins Day 5</div>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="num">3</div>
+        <div class="label">National Parks</div>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <div class="num">17</div>
+        <div class="label">Days</div>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <div class="num">4</div>
+        <div class="label">Adventurers</div>
+      </div>
+      <div class="hero-meta-divider"></div>
+      <div class="hero-meta-item">
+        <div class="num">∞ and-a-half</div>
+        <div class="label">Memories</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Descend</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- ══════════ QUEST BOARD ══════════ -->
+<div class="quest-section">
+  <div class="quest-header">
+    <span class="overline">The Three Territories</span>
+    <h2>Where We Are Going</h2>
+  </div>
+  <div class="quest-grid">
+    <div class="quest-card">
+      <div class="quest-number">I</div>
+      <div class="quest-name">Mount Rainier</div>
+      <div class="quest-region">Washington · Sept 9–11</div>
+      <div class="quest-desc">A 14,411-foot active volcano draped in glaciers. Alpine meadows, wildflower trails, and views that stop you mid-sentence. Paradise, it turns out, lives up to its name.</div>
+    </div>
+    <div class="quest-card">
+      <div class="quest-number">II</div>
+      <div class="quest-name">Olympic</div>
+      <div class="quest-region">Washington · Sept 12–18</div>
+      <div class="quest-desc">Three ecosystems in one park — temperate rainforest, rugged Pacific coastline, and glacier-capped peaks. The Greenwood has nothing on the Hoh. The most diverse national park in the country.</div>
+    </div>
+    <div class="quest-card">
+      <div class="quest-number">III</div>
+      <div class="quest-name">North Cascades</div>
+      <div class="quest-region">Washington · Sept 18–19</div>
+      <div class="quest-desc">America's Alps. More glaciers than any park outside Alaska. Turquoise lakes from glacial flour. Larch trees turning gold in September — which, unlike certain other golden rings, is entirely benign.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ CAMPAIGN LOG ══════════ -->
+<div class="log-section">
+  <div class="section">
+    <span class="section-label">The Campaign Log</span>
+    <h2 class="section-title">Day by Day</h2>
+
+    <div class="days-grid">
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 1</div>
+          <div class="day-date-text">Sept 8<br>Mon</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-fly">✈ Depart</span>
+          <div class="day-location">Seattle</div>
+          <div class="day-title">Wheels Down</div>
+          <div class="day-desc">Land at SEA just past twilight. Check into Hyatt Regency Lake Washington — waterfront views, one mile from the airport. No snakes. No bandits. Trip starts now.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 2</div>
+          <div class="day-date-text">Sept 9<br>Tue</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-drive">→ Travel Day</span>
+          <div class="day-location">Mount Rainier NP</div>
+          <div class="day-title">Into the Mountains</div>
+          <div class="day-desc">Drive south to Rainier. First look at the volcano. Afternoon walk around Longmire — old-growth forest, historic buildings, and the mountain looming above. First night at Cougar Rock Campground. Nobody has to sacrifice an eye to make camp.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 3</div>
+          <div class="day-date-text">Sept 10<br>Wed</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-camp">⛺ Camp Night</span>
+          <div class="day-location">Mount Rainier NP</div>
+          <div class="day-title">Paradise</div>
+          <div class="day-desc">Full day in the alpine. Drive up to Paradise at 5,400 feet. Hike the Skyline Trail — 5 miles, 1,700 feet of elevation, 360° views of glaciers and volcanic peaks. End at Reflection Lakes. No navigation check needed. Thirteen moons not guaranteed.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 4</div>
+          <div class="day-date-text">Sept 11<br>Thu</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-hotel">🏨 Hotel Night</span>
+          <div class="day-location">Rainier → Seattle</div>
+          <div class="day-title">Sunrise &amp; Ancient Trees</div>
+          <div class="day-desc">Morning at Sunrise — highest point accessible by road in the park at 6,400 feet. Then Grove of the Patriarchs — 1,000-year-old Douglas firs on a river island, reached by a swinging suspension bridge. These trees predate the Magnus War. Drive back to Seattle.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 5</div>
+          <div class="day-date-text">Sept 12<br>Fri</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-party">⚔ Party Assembled</span>
+          <div class="day-location">Olympic NP Begins</div>
+          <div class="day-title">Enacra &amp; Tolwyn Arrive</div>
+          <div class="day-desc">Pick up your dwarf paladin and his emo girlfriend at SeaTac. Grocery run. Drive northwest to Olympic. Stop at Hurricane Ridge — 5,242 feet, panoramic views of the Olympic Mountains. First night at Sol Duc Hot Springs Campground. The full party is together. Alignment Approaches.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 6</div>
+          <div class="day-date-text">Sept 13<br>Sat</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-camp">⛺ Camp Night</span>
+          <div class="day-location">Lake Crescent</div>
+          <div class="day-title">The Bluest Water You've Ever Seen</div>
+          <div class="day-desc">Marymere Falls — a 90-foot waterfall in old growth. Then Lake Crescent: glacier-carved, 624 feet deep, so clear you can see 60 feet down. No ritual bindings detected. Evening back at camp — Sol Duc hot springs pools at 98–107°F. Tolwyn swims. Nobody loses an eye this time.... maybe</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 7</div>
+          <div class="day-date-text">Sept 14<br>Sun</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-camp">⛺ Camp Night</span>
+          <div class="day-location">Sol Duc Valley</div>
+          <div class="day-title">Falls &amp; Forest</div>
+          <div class="day-desc">Sol Duc Falls trail starts right from camp — 1.6 miles to one of the most photographed waterfalls in the Northwest. Afternoon on the Spruce Railroad Trail along Lake Crescent to Devil's Punchbowl. Hot springs again tonight. The forest is not angry with us. Anger would be simpler.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 8</div>
+          <div class="day-date-text">Sept 15<br>Mon</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-special">🛳 International</span>
+          <div class="day-location">Victoria, BC · Canada</div>
+          <div class="day-title">We're Going to Canada</div>
+          <div class="day-desc">Ferry from Port Angeles across the Strait of Juan de Fuca to Victoria, BC. 90-minute crossing. Inner Harbour, Fisherman's Wharf, Beacon Hill Park. British colonial architecture — Elowen will feel right at home among contested territorial claims. Passports required. No attainder recognised in Canada.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 9</div>
+          <div class="day-date-text">Sept 16<br>Tue</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-drive">→ Travel Day</span>
+          <div class="day-location">Olympic Coast</div>
+          <div class="day-title">Town Day &amp; Westward</div>
+          <div class="day-desc">Rest morning in Port Angeles — resupply, laundry, recharge. No Expeditious Messengers observed. Then drive west along the coast to Mora Campground. The Pacific Ocean is a short walk from camp.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 10</div>
+          <div class="day-date-text">Sept 17<br>Wed</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-camp">⛺ Camp Night</span>
+          <div class="day-location">Hoh Rainforest</div>
+          <div class="day-title">The Green Cathedral</div>
+          <div class="day-desc">One of the only temperate rainforests in North America. Hall of Mosses — ancient maple trees draped in thick hanging moss, filtering light into something otherworldly. Roosevelt Elk roam the valley floor. Wren would lose his mind. The forest is watching. It usually is.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 11</div>
+          <div class="day-date-text">Sept 18<br>Thu</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-drive">→ Travel Day</span>
+          <div class="day-location">Coast → North Cascades</div>
+          <div class="day-title">Sea Stacks to Glaciers</div>
+          <div class="day-desc">Rialto Beach — dramatic sea stacks, driftwood the size of buildings, the Pacific crashing into rock arches. Ruby Beach. The Tree of Life — a massive Sitka spruce clinging to an eroding cliff by its roots alone. Unlike other binding sites we've visited, this one is perfectly stable. Four-hour drive north to Howard Miller Steelhead Park on the Skagit River.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 12</div>
+          <div class="day-date-text">Sept 19<br>Fri</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-hotel">🏨 Hotel Night</span>
+          <div class="day-location">North Cascades NP</div>
+          <div class="day-title">America's Alps</div>
+          <div class="day-desc">Washington Pass Overlook — dramatic rock spires and glaciated peaks. Diablo Lake — an impossible turquoise from glacial flour. Thunder Knob trail for panoramic views. Larch trees going gold in September. No compass needed. No compass will burn out. Drive to Hyatt House Redmond.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 13</div>
+          <div class="day-date-text">Sept 20<br>Sat</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-hotel">🏨 Lodge Night</span>
+          <div class="day-location">Lake Quinault</div>
+          <div class="day-title">Farewell to Enacra &amp; Tolwyn</div>
+          <div class="day-desc">Drop three eyes and a car at SeaTac — they return to their own narrative threads. Then drive southwest to Lake Quinault Lodge, a 1926 historic lodge on the edge of Olympic's most remote rainforest. Franklin Roosevelt stayed here in 1937 and fast-tracked the creation of the national park. Real beds. Real dinner. Earned. Hit die reset.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 14</div>
+          <div class="day-date-text">Sept 21<br>Sun</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-hotel">🏨 Lodge Night</span>
+          <div class="day-location">Quinault Rainforest</div>
+          <div class="day-title">World Record Trees</div>
+          <div class="day-desc">Quinault Rainforest Loop — home to the largest Sitka spruce, Douglas fir, western red cedar, and mountain hemlock on earth. Four world-record trees in a single valley. The Greenwood sends its regards. Afternoon drive along the coast — Kalaloch Beach, Ruby Beach one more time.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 15</div>
+          <div class="day-date-text">Sept 22<br>Mon</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-special">⚾ Special Event</span>
+          <div class="day-location">Seattle</div>
+          <div class="day-title">Baseball Under the Lights</div>
+          <div class="day-desc">Drive back to Seattle. Check back into Hyatt Regency Lake Washington. Evening: Mariners vs. Houston Astros at T-Mobile Park. Views of Puget Sound and the mountains. Cold beer. Hot dogs. No one is wanted by any of the Five Nations inside this stadium. End of trip celebration.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 16</div>
+          <div class="day-date-text">Sept 23<br>Tue</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-hotel">🏨 Hotel Night</span>
+          <div class="day-location">Seattle</div>
+          <div class="day-title">Last Day in the City</div>
+          <div class="day-desc">Rest day. Pike Place Market, waterfront, Chihuly Garden and Glass. Good coffee. Good food. No druid scouts on the road. Last night in the Pacific Northwest.</div>
+        </div>
+      </div>
+
+      <div class="day-block">
+        <div class="day-date">
+          <div class="day-num">Day 17</div>
+          <div class="day-date-text">Sept 24<br>Wed</div>
+        </div>
+        <div class="day-content">
+          <span class="day-badge badge-fly">✈ Return</span>
+          <div class="day-location">Seattle → Orlando</div>
+          <div class="day-title">The Road Home</div>
+          <div class="day-desc">Fly SEA→MCO. Return to Florida. Return to Foxgrove. Return to the table. The dream continues.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ LEGENDARY ENCOUNTERS ══════════ -->
+<div class="encounters-section">
+  <div class="encounters-inner">
+    <span class="section-label" style="color: var(--sage);">Legendary Encounters</span>
+    <h2 class="section-title" style="color: var(--white);">What You Cannot Miss</h2>
+
+    <div class="encounters-grid">
+      <div class="encounter-item">
+        <span class="encounter-icon">♨️</span>
+        <div class="encounter-title">Sol Duc Hot Springs</div>
+        <div class="encounter-desc">Natural mineral pools steps from camp, 98–107°F. Four nights in a row. After a day of hiking, this is everything. Tolwyn does not have to sacrifice anything to use them.</div>
+      </div>
+      <div class="encounter-item">
+        <span class="encounter-icon">🛳</span>
+        <div class="encounter-title">Victoria, BC</div>
+        <div class="encounter-desc">A 90-minute ferry crossing to Canada. British colonial harbour town, fresh seafood, and the kind of afternoon you'll talk about for years. Passports required. No attainder recognised.</div>
+      </div>
+      <div class="encounter-item">
+        <span class="encounter-icon">🌿</span>
+        <div class="encounter-title">Hoh Rainforest</div>
+        <div class="encounter-desc">Moss-draped maple canopy, 140 inches of rain a year, Roosevelt Elk on the trail. One of the most otherworldly places in North America. Wren is wouldn't to keep it together. Mostly.</div>
+      </div>
+      <div class="encounter-item">
+        <span class="encounter-icon">🏔</span>
+        <div class="encounter-title">Washington Pass</div>
+        <div class="encounter-desc">Standing at the edge of a cliff looking at jagged granite spires and glaciers with the larches going gold below. One of the great views in the American West. No druid surveillance detected. Or noticed?</div>
+      </div>
+      <div class="encounter-item">
+        <span class="encounter-icon">🌊</span>
+        <div class="encounter-title">Rialto Beach</div>
+        <div class="encounter-desc">Sea stacks, tide pools, driftwood logs the size of houses, and the raw North Pacific. Not a Florida beach. Considerably better. No irrigation ditches. No serpents. Probably.</div>
+      </div>
+      <div class="encounter-item">
+        <span class="encounter-icon">🏛</span>
+        <div class="encounter-title">Lake Quinault Lodge</div>
+        <div class="encounter-desc">A 1926 National Historic Landmark on a glassy rainforest lake. FDR slept here. You will too. After twelve days of camping, the dining room will feel like Stigandr gave you the best table in the house.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ COMPENDIUM ══════════ -->
+<div class="compendium-section">
+  <div class="section">
+    <span class="section-label">The Compendium</span>
+    <h2 class="section-title">Need to Know</h2>
+
+    <div class="compendium-grid">
+      <div class="compendium-item">
+        <div class="compendium-label">Passport</div>
+        <div class="compendium-text"><strong>Required for Victoria BC on Sept 15.</strong> No passport, no Canada. This is not negotiable. Unlike most things in Venator, there is no workaround.</div>
+      </div>
+      <div class="compendium-item">
+        <div class="compendium-label">Weather</div>
+        <div class="compendium-text">Days 55–70°F, nights drop to the low 40s. Olympic coast gets fog and rain regardless of forecast. <strong>Pack a real rain jacket and warm layers.</strong> The Greenwood is not the only thing that watches from the cold.</div>
+      </div>
+      <div class="compendium-item">
+        <div class="compendium-label">Campsites</div>
+        <div class="compendium-text"><strong>All campgrounds are pre-reserved.</strong> Flush toilets and running water at every site. Unlike the Sylvan Marches, nobody has to dig anything.</div>
+      </div>
+      <div class="compendium-item">
+        <div class="compendium-label">Cell Service</div>
+        <div class="compendium-text"><strong>Minimal to none inside all three parks.</strong> Download offline maps before you leave. Tell someone your itinerary. No Expeditious Messengers will reach you here. This is a feature.</div>
+      </div>
+      <div class="compendium-item">
+        <div class="compendium-label">The Vehicle</div>
+        <div class="compendium-text">Rolling in a <strong>Toyota Grand Highlander.</strong> Three rows, everyone has room, gear fits. Nobody is getting ambushed in a ditch from this vehicle. Probably.</div>
+      </div>
+      <div class="compendium-item">
+        <div class="compendium-label">Park Pass</div>
+        <div class="compendium-text"><strong>America the Beautiful Pass</strong> covers all three national parks — $80 total, split four ways. Unlike House Medani contracts, this one is simple and the terms are clear.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<div class="footer">
+  <div class="footer-rune">The Dreams Campaign · Washington Expedition · 998 YK</div>
+  <div class="footer-title">The road is waiting.</div>
+  <div class="footer-sub">Washington State · September 2026 · All campsites reserved · The party is assembled.</div>
+  <div class="footer-party">
+    <span class="footer-party-name">The DM</span>
+    <span class="footer-party-sep">✦</span>
+    <span class="footer-party-name">Elowen</span>
+    <span class="footer-party-sep">✦</span>
+    <span class="footer-party-name">Enacra</span>
+    <span class="footer-party-sep">✦</span>
+    <span class="footer-party-name">Tolwyn</span>
+  </div>
+</div>
+
+</body>
+</html>
